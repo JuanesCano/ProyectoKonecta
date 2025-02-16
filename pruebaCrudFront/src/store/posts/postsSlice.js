@@ -10,7 +10,7 @@ const initialState = {
 export const getPosts = createAsyncThunk('postsSlice/getPosts', async (arg, { rejectWithValue }) => {
     try {
         const token = getToken();
-        const response = await axios.get("https://pruebacrud.onrender.com/post", {
+        const response = await axios.get("/post", {
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -24,7 +24,7 @@ export const getPosts = createAsyncThunk('postsSlice/getPosts', async (arg, { re
 export const getPostforId = createAsyncThunk('postsSlice/getPostForId', async (postId, { rejectWithValue }) => {
     try {
         const token = getToken();
-        const response = await axios.get(`https://pruebacrud.onrender.com/post/${postId}`, {
+        const response = await axios.get(`/post/${postId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -38,7 +38,7 @@ export const getPostforId = createAsyncThunk('postsSlice/getPostForId', async (p
 export const getUserPosts = createAsyncThunk('postsSlice/getUserPosts', async (arg, { rejectWithValue }) => {
     try {
         const token = getToken();
-        const response = await axios.get(`https://pruebacrud.onrender.com/post/getUserPost`, {
+        const response = await axios.get(`/post/getUserPost`, {
             headers: {
                 Authorization: `Bearer ${token}`
             },
@@ -52,7 +52,7 @@ export const getUserPosts = createAsyncThunk('postsSlice/getUserPosts', async (a
 export const addPosts = createAsyncThunk('postsSlice/addPosts', async (formData, { rejectWithValue }) => {
     try {
         const token = getToken();
-        const response = await axios.post(`https://pruebacrud.onrender.com/post/addPost`, formData, {
+        const response = await axios.post(`/post/addPost`, formData, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -66,7 +66,7 @@ export const addPosts = createAsyncThunk('postsSlice/addPosts', async (formData,
 export const updatePosts = createAsyncThunk('postsSlice/updatePosts', async ({ postId, updateData }, { rejectWithValue }) => {
     try {
         const token = getToken();
-        const response = await axios.put(`https://pruebacrud.onrender.com/post/updatePost/${postId}`, updateData, {
+        const response = await axios.put(`/post/updatePost/${postId}`, updateData, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -80,7 +80,7 @@ export const updatePosts = createAsyncThunk('postsSlice/updatePosts', async ({ p
 export const deletePosts = createAsyncThunk('postsSlice/deletePosts', async (postId, { rejectWithValue }) => {
     try {
         const token = getToken();
-        const response = await axios.delete(`https://pruebacrud.onrender.com/post/deletePost/${postId}`, {
+        const response = await axios.delete(`/post/deletePost/${postId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }

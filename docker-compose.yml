@@ -9,15 +9,6 @@ services:
       - backend
     networks:
       - app-network
-  backend:
-    build:
-      context: ./PruebaCrud
-    ports:
-      - "3000:3000"
-    depends_on:
-      - mongodb
-    networks:
-      - app-network
 
   mongodb:
     image: mongo
@@ -26,6 +17,18 @@ services:
       - "27017:27017"
     volumes:
       - mongodb-data:/data/db
+    networks:
+      - app-network
+
+  backend:
+    build:
+      context: ./PruebaCrud
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+    env_file:
+      - ./PruebaCrud/.env
     networks:
       - app-network
 

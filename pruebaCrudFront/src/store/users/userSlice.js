@@ -9,7 +9,7 @@ const initialState = {
 export const registerUser = createAsyncThunk('userSlice/registerUser', 
     async (arg, { rejectWithValue }) => {
         try {
-            const response = await axios.post("https://pruebacrud.onrender.com/user/register", arg);
+            const response = await axios.post("/user/register", arg);
             return response.data;
         } catch (error) {
             return rejectWithValue(error.response?.data?.message || "Error desconocido");
@@ -20,7 +20,7 @@ export const registerUser = createAsyncThunk('userSlice/registerUser',
 export const loginUser = createAsyncThunk('userSlice/loginUser', 
     async (arg, { rejectWithValue }) => {
         try {
-            const response = await axios.post("https://pruebacrud.onrender.com/user/login", arg);
+            const response = await axios.post("/user/login", arg);
             return response.data; 
         } catch (error) {
             return rejectWithValue(error.response?.data?.message || "Error desconocido");
