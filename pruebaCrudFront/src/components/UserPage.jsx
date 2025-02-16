@@ -164,7 +164,7 @@ export const UserPage = () => {
                 {isLoading ? (
                     <p className="text-2xl font-bold mb-6 flex justify-center">Cargando mis posts...</p>
                 ) : Array.isArray(posts.data) && posts.data.length === 0 ? (
-                    <p>No hay posts disponibles.</p>
+                    <p className="text-2xl font-bold mb-6 flex justify-center">No hay posts disponibles.</p>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                         {Array.isArray(posts.data) &&

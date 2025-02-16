@@ -2,19 +2,22 @@ version: '3'
 services:
   frontend:
     build:
-      context: ./frontend
+      context: ./pruebaCrudFront
     ports:
       - "5174:80"
     depends_on:
       - backend
-
+    networks:
+      - app-network
   backend:
     build:
-      context: ./backend
+      context: ./PruebaCrud
     ports:
       - "3000:3000"
     depends_on:
       - mongodb
+    networks:
+      - app-network
 
   mongodb:
     image: mongo
@@ -22,4 +25,13 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - ./data:/data/db
+      - mongodb-data:/data/db
+    networks:
+      - app-network
+
+volumes:
+  mongodb-data:
+
+networks:
+  app-network:
+    driver: bridge
