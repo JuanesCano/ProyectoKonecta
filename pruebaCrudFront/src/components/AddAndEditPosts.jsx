@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { addPosts, updatePosts } from "../store/posts/postsSlice";
 import { useDispatch } from "react-redux";
+import { getToken } from "../encrypt/tokenService";
 
 export const AddAndEditPosts = () => {
     const dispatch = useDispatch();
@@ -21,7 +22,7 @@ export const AddAndEditPosts = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const token = localStorage.getItem("token");
+        const token = getToken();
 
         if (!token) {
             navigate("/");

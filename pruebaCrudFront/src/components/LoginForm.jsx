@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../store/users/userSlice";
 import { useNavigate } from "react-router-dom";
+import { setToken } from "../encrypt/tokenService";
+import { setRole } from "../encrypt/roleService";
 
 export const LoginForm = () => {
     const [email, setEmail] = useState("");
@@ -18,8 +20,8 @@ export const LoginForm = () => {
             const token = resultAction.payload.data.token;
             const role = resultAction.payload.data.role;
 
-            localStorage.setItem("token", token);
-            localStorage.setItem("role", role);
+            setToken(token);
+            setRole(role);
 
             navigate("/homepage");
         } else {

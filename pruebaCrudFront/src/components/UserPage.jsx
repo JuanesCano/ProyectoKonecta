@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getUserPosts } from "../store/posts/postsSlice";
+import { getToken, removeToken } from "../encrypt/tokenService";
+import { getRole, removeRole } from "../encrypt/roleService";
 
 export const UserPage = () => {
     const dispatch = useDispatch();
@@ -43,8 +45,8 @@ export const UserPage = () => {
     const totalPages = Math.ceil((posts.data?.length || 0) / postsPerPage);
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        const userRole = localStorage.getItem("role");
+        const token = getToken();
+        const userRole = getRole();
 
         if (!token || userRole !== "user") {
             navigate("/");
@@ -54,8 +56,8 @@ export const UserPage = () => {
     }, [dispatch, navigate]);
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("role");
+        removeToken();
+        removeRole();
         navigate("/");
     };
 

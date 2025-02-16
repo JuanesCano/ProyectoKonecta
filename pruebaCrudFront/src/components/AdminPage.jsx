@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { deletePosts, getPosts } from "../store/posts/postsSlice";
+import { getToken, removeToken } from "../encrypt/tokenService";
+import { getRole, removeRole } from "../encrypt/roleService";
 
 export const AdminPage = () => {
     const dispatch = useDispatch();
@@ -44,14 +46,14 @@ export const AdminPage = () => {
     };
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
-        localStorage.removeItem("role");
+        removeToken();
+        removeRole();
         navigate("/");
     };
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
-        const userRole = localStorage.getItem("role");
+        const token = getToken();
+        const userRole = getRole();
 
         if (!token || userRole !== "admin") {
             navigate("/");
