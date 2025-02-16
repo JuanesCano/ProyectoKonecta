@@ -29,7 +29,7 @@ export const RegisterForm = () => {
         try {
             await dispatch(registerUser(formulario)).unwrap();
             alert("Registro exitoso");
-            navigate("/login")
+            navigate("/")
         } catch (error) {
             setErrorMessage(error || "Hubo un problema con el registro intente de nuevo")
         }
