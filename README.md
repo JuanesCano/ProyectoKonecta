@@ -62,6 +62,8 @@ Una vez que todos los servicios estén en funcionamiento, se debe restaurar la b
    3. Ejecuta el siguiente comando para restaurar la base de datos en MongoDB (el contenedor mongodb debe estar en ejecución):
      ```bash
      mongorestore --uri="mongodb://localhost:27017" ./backup/test
+RECUERDA TENER MONGO TOOLS INSTALADO PARA PODER EJECUTAR EL COMANDO
+
 Listo reinicia el contenedor y ahora si a probar.
 
 ### **sección de prueba de usuarios**  
