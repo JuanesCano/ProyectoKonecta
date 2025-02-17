@@ -8,14 +8,16 @@
   - [Descripción](#descripción)
   - [Requisitos Previos](#requisitos-previos)
   - [Pasos para Construir y Ejecutar](#pasos-para-construir-y-ejecutar)
-    - [**5. Mejora la sección de prueba de usuarios**](#5-mejora-la-sección-de-prueba-de-usuarios)
+  - [Restaurar base de datos](#restaurar-base-de-datos)
+    - [**sección de prueba de usuarios**](#sección-de-prueba-de-usuarios)
   - [Usuarios de Prueba](#usuarios-de-prueba)
   - [Prueba de Registro de Usuarios Admin](#prueba-de-registro-de-usuarios-admin)
-    - [**7. Agrega una sección de funcionalidades**](#7-agrega-una-sección-de-funcionalidades)
+  - [sección de funcionalidades](#sección-de-funcionalidades)
   - [Funcionalidades](#funcionalidades)
     - [**Administrador**](#administrador)
     - [**Usuario Regular**](#usuario-regular)
     - [**Autenticación y Autorización**](#autenticación-y-autorización)
+    - [**Autenticación y Autorización**](#autenticación-y-autorización-1)
   - [Stack Tecnológico](#stack-tecnológico)
   - [Consideraciones de Seguridad](#consideraciones-de-seguridad)
   - [Mejoras Futuras](#mejoras-futuras)
@@ -30,26 +32,40 @@ Este proyecto es una aplicación CRUD de ejemplo que permite la gestión de soli
 
 
 ## Pasos para Construir y Ejecutar
-1. Clonar el repositorio:
+1.   Clonar el repositorio:
    ```bash
    git clone <URL_DEL_REPOSITORIO>
    cd ProyectoCompleto
 
 2. Construir y levantar todos los servicios:
+   ```bash
    docker-compose up --build
+   ```bash
    Esto realizará lo siguiente:
    Backend: Disponible en http://localhost:3000
    Frontend: Disponible en http://localhost:5174
    MongoDB: Base de datos ejecutándose en el puerto 27017
 
 3. Para detener todos los servicios:
+  ```bash
+   Ctrl + c
    docker-compose down
 
+## Restaurar base de datos
+Una vez que todos los servicios estén en funcionamiento, se debe restaurar la base de datos para cargar los datos de prueba. Sigue estos pasos:
 
+1. Abre una nueva pestaña o ventana de la terminal mientras los contenedores están corriendo.
 
----
+2. Navega al directorio donde se encuentra la carpeta de respaldo con el siguiente comando:
+   ```bash
+   cd ruta/del/proyecto
 
-### **5. Mejora la sección de prueba de usuarios**  
+3. Ejecuta el siguiente comando para restaurar la base de datos en MongoDB (el contenedor mongodb debe estar en ejecución):
+   ```bash
+  mongorestore --uri="mongodb://localhost:27017" ./backup/test
+Listo reinicia el contenedor y ahora si a probar.
+
+### **sección de prueba de usuarios**  
 ```md
 ## Usuarios de Prueba
 Se incluyen los siguientes usuarios para validar las funcionalidades de la aplicación según su rol:
@@ -66,11 +82,13 @@ Se incluyen los siguientes usuarios para validar las funcionalidades de la aplic
   - Correo: `userdos@gmail.com`  
   - Contraseña: `1234`  
 
-El rol de "user" permite únicamente gestionar sus propias solicitudes. El rol de "admin" ofrece acceso a un dashboard para la gestión de todas las solicitudes.
+El rol de "user" permite únicamente gestionar sus propias solicitudes. 
+
+El rol de "admin" ofrece acceso a un dashboard para la gestión de todas las solicitudes.
 
 
 ## Prueba de Registro de Usuarios Admin
-El registro de usuarios con rol `admin` solo se puede hacer mediante Postman para mayor seguridad:
+El registro de usuarios admin solo se puede hacer a través de Postman para mayor seguridad. Asegúrate de que el endpoint está protegido con una clave o un mecanismo de seguridad (por ejemplo, solo accesible desde un origen permitido).
 
 1. Abre Postman y selecciona el método `POST` con la URL `http://localhost:3000/user/registerUser`.
 
@@ -78,20 +96,19 @@ El registro de usuarios con rol `admin` solo se puede hacer mediante Postman par
 
    ```json
    {
-     "name": "admin",
+     "name": "admin2",
      "entry_date": "02/3/2025",
      "salary": 2000000,
-     "email": "admin@gmail.com",
+     "email": "admin2@gmail.com",
      "password": "1234",
      "role": "admin"
    }
 
 3. Envía la solicitud y luego inicia sesión con el nuevo usuario desde el frontend.
+- Correo: `admin2@gmail.com`
+- Contraseña: `1234`
 
-
----
-
-### **7. Agrega una sección de funcionalidades**  
+## sección de funcionalidades
 
 ```md
 ## Funcionalidades
@@ -104,18 +121,20 @@ El registro de usuarios con rol `admin` solo se puede hacer mediante Postman par
 - Visualizar únicamente sus propias solicitudes.
 
 ### **Autenticación y Autorización**
-- Sistema de autenticación con manejo de sesiones.
-- Redirección automática según el rol del usuario.
-- Cierre de sesión desde el frontend.
-- Encriptacion de tokens y roles en localstorage 
+### **Autenticación y Autorización**
+- Sistema de autenticación basado en JWT.
+- Los tokens se almacenan de forma segura en el frontend usando `localStorage` y se utilizan para las solicitudes posteriores.
+- Redirección automática según el rol del usuario para garantizar que acceden a las áreas correspondientes.
+- Cierre de sesión desde el frontend con eliminación del token de `localStorage`.
+
 
 
 ## Stack Tecnológico
-- **Frontend**: React, Tailwind, Flowbite
-- **Backend**: Fastify con validaciones y manejo de roles.
-- **Base de Datos**: MongoDB (base de datos no relacional)
-- **Estado**: Manejadores de estado usando `React-Redux`
-- **Infraestructura**: Docker y Docker Compose
+- **Frontend**: React (React Router, React Hooks), Tailwind CSS, Flowbite
+- **Backend**: Fastify (con plugins para validación y manejo de roles como fastify-jwt)
+- **Base de Datos**: MongoDB (con Mongoose para la gestión de esquemas y modelos)
+- **Estado**: React-Redux (con Thunk para el manejo de acciones asincrónicas)
+- **Infraestructura**: Docker, Docker Compose para el despliegue de contenedores
 
 
 ## Consideraciones de Seguridad
@@ -126,6 +145,8 @@ El registro de usuarios con rol `admin` solo se puede hacer mediante Postman par
 
 
 ## Mejoras Futuras
-- Implementación de pruebas unitarias
+- Implementación de pruebas unitarias y de integración.
 - Mejorar el manejo de errores en el frontend para brindar retroalimentación más clara al usuario.
 - Agregar pruebas automatizadas para asegurar la estabilidad de la aplicación.
+- Optimización del rendimiento del backend y manejo de grandes volúmenes de datos.
+- Mejorar la interfaz de administración con más herramientas para la gestión de usuarios.
