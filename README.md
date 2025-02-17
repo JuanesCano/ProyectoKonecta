@@ -40,7 +40,6 @@ Este proyecto es una aplicación CRUD de ejemplo que permite la gestión de soli
 2. Construir y levantar todos los servicios:
    ```bash
    docker-compose up --build
-   ```bash
    Esto realizará lo siguiente:
    Backend: Disponible en http://localhost:3000
    Frontend: Disponible en http://localhost:5174
