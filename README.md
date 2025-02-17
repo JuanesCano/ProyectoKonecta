@@ -69,15 +69,15 @@ Listo reinicia el contenedor y ahora si a probar.
 ## Usuarios de Prueba
 Se incluyen los siguientes usuarios para validar las funcionalidades de la aplicación según su rol:
 
-- **Usuario Admin**  
+  **Usuario Admin**  
   - Correo: `admin@gmail.com`  
+  - ontraseña: `1234`  
+
+  **Usuario Regular 1**
+  - Correo: `useruno@gmail.com` 
   - Contraseña: `1234`  
 
-- **Usuario Regular 1**  
-  - Correo: `useruno@gmail.com`  
-  - Contraseña: `1234`  
-
-- **Usuario Regular 2**  
+  **Usuario Regular 2** 
   - Correo: `userdos@gmail.com`  
   - Contraseña: `1234`  
 
