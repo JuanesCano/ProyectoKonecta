@@ -76,7 +76,7 @@ export const AddAndEditPosts = () => {
                 </button>
                 <button
                     type="button"
-                    onClick={() => navigate("/user/posts")}
+                    onClick={() => navigate("/homepage")}
                     className="ml-4 bg-gray-300 hover:bg-gray-400 text-gray-700 font-bold py-2 px-4 rounded"
                 >
                     Cancelar
