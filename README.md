@@ -32,7 +32,7 @@ Este proyecto es una aplicación CRUD de ejemplo que permite la gestión de soli
 
 
 ## Pasos para Construir y Ejecutar
-1.   Clonar el repositorio:
+1. Clonar el repositorio:
    ```bash
    git clone <URL_DEL_REPOSITORIO>
    cd ProyectoCompleto
@@ -46,22 +46,22 @@ Este proyecto es una aplicación CRUD de ejemplo que permite la gestión de soli
    MongoDB: Base de datos ejecutándose en el puerto 27017
 
 3. Para detener todos los servicios:
-  ```bash
+   ```bash
    Ctrl + c
    docker-compose down
 
 ## Restaurar base de datos
 Una vez que todos los servicios estén en funcionamiento, se debe restaurar la base de datos para cargar los datos de prueba. Sigue estos pasos:
 
-1. Abre una nueva pestaña o ventana de la terminal mientras los contenedores están corriendo.
+   1. Abre una nueva pestaña o ventana de la terminal mientras los contenedores están corriendo.
 
-2. Navega al directorio donde se encuentra la carpeta de respaldo con el siguiente comando:
-   ```bash
-   cd ruta/del/proyecto
+   2. Navega al directorio donde se encuentra la carpeta de respaldo con el siguiente comando:
+     ```bash
+     cd ruta/del/proyecto
 
-3. Ejecuta el siguiente comando para restaurar la base de datos en MongoDB (el contenedor mongodb debe estar en ejecución):
-   ```bash
-  mongorestore --uri="mongodb://localhost:27017" ./backup/test
+   3. Ejecuta el siguiente comando para restaurar la base de datos en MongoDB (el contenedor mongodb debe estar en ejecución):
+     ```bash
+     mongorestore --uri="mongodb://localhost:27017" ./backup/test
 Listo reinicia el contenedor y ahora si a probar.
 
 ### **sección de prueba de usuarios**  
