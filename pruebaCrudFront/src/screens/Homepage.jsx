@@ -2,13 +2,15 @@ import { useNavigate } from 'react-router-dom';
 import { AdminPage } from '../components/AdminPage';
 import { UserPage } from '../components/UserPage';
 import { useEffect } from 'react';
+import { getRole } from '../encrypt/roleService';
+import { getToken } from '../encrypt/tokenService';
 
 export const Homepage = () => {
     const navigate = useNavigate()
-    const role = localStorage.getItem("role");
+    const role = getRole();
 
     useEffect(() => {
-        const token = localStorage.getItem("token");
+        const token = getToken();
 
         if(!token || !role){
             navigate("/");
