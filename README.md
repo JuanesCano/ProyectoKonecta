@@ -71,7 +71,7 @@ Se incluyen los siguientes usuarios para validar las funcionalidades de la aplic
 
   **Usuario Admin**  
   - Correo: `admin@gmail.com`  
-  - ontraseña: `1234`  
+  - Contraseña: `1234`
 
   **Usuario Regular 1**
   - Correo: `useruno@gmail.com` 
